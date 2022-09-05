@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
+# Each Result is an row in an oracle table.
 class Result
-  attr_reader :roll, :description, :low, :high
+  attr_reader :roll, :description
 
-  def initialize(data)
-    @roll, @description = data.split(' ')
-    @low, @high = roll.split('-').map(&:to_i)
-    @high ||= low
+  def initialize(roll:, description:)
+    @roll = roll.to_i
+    @description = description
   end
 
-  def hit?(roll)
-    roll >= low && roll <= high
+  def hit?(r)
+    roll == r
   end
 end
